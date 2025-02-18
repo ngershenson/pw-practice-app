@@ -1,21 +1,21 @@
 import { test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4200/');
+    await page.goto('http://localhost:4200/', { timeout: 120000, waitUntil: 'domcontentloaded'});
 });
 
-test.describe('suite1', () => {
+test.describe('tables & data', () => {
 
     test.beforeEach(async ({ page }) => {
-        await page.getByText('Charts').click();
+        await page.getByText('Tables & Data').click();
     });
 
-    test('get echarts', async ({ page }) => {
-        await page.getByText('Echarts').click();
+    test('get tree grid', async ({ page }) => {
+        await page.getByText('Tree Grid').click();
     });
 })
 
-test.describe('suite2', () => {
+test.describe('forms', () => {
 
     test.beforeEach(async ({ page }) => {
         await page.getByText('Forms').click();
