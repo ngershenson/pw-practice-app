@@ -10,12 +10,8 @@ test.describe('suite1', () => {
         await page.getByText('Charts').click();
     });
 
-    test('get to form layout', async ({ page }) => {
-        await page.getByText('Form Layouts').click();
-    });
-
-    test('navigate to datepicker', async ({ page }) => {
-        await page.getByText('Datepicker').click();
+    test('get echarts', async ({ page }) => {
+        await page.getByText('Echarts').click();
     });
 })
 
