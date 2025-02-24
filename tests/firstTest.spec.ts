@@ -1,31 +1,36 @@
 import { test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4200/', { timeout: 120000, waitUntil: 'domcontentloaded'});
+    await page.goto('http://localhost:4200/'); // , { timeout: 120000, waitUntil: 'domcontentloaded'}
+    await page.getByText('Forms').click();
+    await page.getByText('Form Layouts').click();
 });
 
-test.describe('tables & data', () => {
+test('Locator syntax rules', async({ page }) => {
+    // by Tag name
+    await page.locator('input').first().click()
 
-    test.beforeEach(async ({ page }) => {
-        await page.getByText('Tables & Data').click();
-    });
+    // by ID
+    page.locator('#inputEmail1')
 
-    test('get tree grid', async ({ page }) => {
-        await page.getByText('Tree Grid').click();
-    });
-})
+    // by class value
+    page.locator('.shape-rectangle')
 
-test.describe('forms', () => {
+    // by attribute
+    page.locator('[type="email"]')
 
-    test.beforeEach(async ({ page }) => {
-        await page.getByText('Forms').click();
-    });
+    // by Class value (full)
+    page.locator('[class="input-full-width size-medium status-basic shape-rectangle nb-transition"]')
 
-    test('get to form layout', async ({ page }) => {
-        await page.getByText('Form Layouts').click();
-    });
+    // combine different selectors
+    page.locator('input[placeholder="Email"]')
 
-    test('navigate to datepicker', async ({ page }) => {
-        await page.getByText('Datepicker').click();
-    });
+    // by XPath (NOT RECOMMENDED)
+    page.locator('//*[@id="inputEmail1"]')
+
+    // by partial text match
+    page.locator(':text("Using")')
+
+    // by exact text match
+    page.locator(':text-is("Using the Grid")')
 })
