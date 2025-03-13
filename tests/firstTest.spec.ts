@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 
 test("Locator syntax rules", async ({ page }) => {
   // by Tag name
-  await page.locator("input").first().click();
+  page.locator("input").first();
 
   // by ID
   page.locator("#inputEmail1");
@@ -31,10 +31,10 @@ test("Locator syntax rules", async ({ page }) => {
   page.locator('//*[@id="inputEmail1"]');
 
   // by partial text match
-  page.locator(':text("Using")');
+  await page.locator(':text("Using")').click();
 
   // by exact text match
-  page.locator(':text-is("Using the Grid")');
+  await page.locator(':text-is("Using the Grid")').click();
 });
 
 test("User facing locators", async ({ page }) => {
