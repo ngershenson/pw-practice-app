@@ -251,3 +251,4 @@ test("sliders", async ({ page }) => {
   await page.mouse.up();
   await expect(tempBox).toContainText('30');
 });
+
