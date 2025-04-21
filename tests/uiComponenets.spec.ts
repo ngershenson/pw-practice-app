@@ -19,7 +19,7 @@ test.describe("Form Layouts page", () => {
     await usingTheGridEmailInput.fill("test@test.com");
     await usingTheGridEmailInput.clear();
     await usingTheGridEmailInput.pressSequentially("test2@test.com", {
-      delay: 10,
+      delay: 500,
     });
 
     //generic assertion
@@ -88,8 +88,8 @@ test("lists and dropdowns", async ({ page }) => {
   const dropDownMenu = page.locator("ngx-header nb-select");
   await dropDownMenu.click();
 
-  page.getByRole("list"); // when the list has a UL tag
-  page.getByRole("listitem"); // when the list has LI tag
+  // page.getByRole("list"); // when the list has a UL tag
+  // page.getByRole("listitem"); // when the list has LI tag
 
   // const optionList = page.getByRole('list').locator('nb-option')
   const optionList = page.locator("nb-option-list nb-option");
@@ -251,4 +251,3 @@ test("sliders", async ({ page }) => {
   await page.mouse.up();
   await expect(tempBox).toContainText('30');
 });
-
