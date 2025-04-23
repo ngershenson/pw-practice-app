@@ -33,7 +33,7 @@ export class FormLayoutsPage {
     name: string,
     email: string,
     rememberMe: boolean
-  ) {
+  ): Promise<void> {
     const inlineForm = this.page.locator("nb-card", { hasText: "Inline form" });
     await inlineForm.getByPlaceholder("Jane Doe").fill(name);
     await inlineForm.getByPlaceholder("Email").fill(email);
