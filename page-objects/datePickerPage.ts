@@ -1,25 +1,32 @@
 import { Page, expect } from "@playwright/test";
+import { HelperBase } from "./helperBase";
 
-export class DatepickerPage {
-  private readonly page: Page;
+export class DatepickerPage extends HelperBase {
   constructor(page: Page) {
-    this.page = page;
+    super(page);
   }
 
   async selectCommonDatePickerDateFromToday(numberOfDaysFromToday: number) {
     const calendarInputField = this.page.getByPlaceholder("Form Picker");
     await calendarInputField.click();
-    const dateToAssert = await this.selectDateInTheCalendar(numberOfDaysFromToday);
+    const dateToAssert = await this.selectDateInTheCalendar(
+      numberOfDaysFromToday
+    );
 
     await expect(calendarInputField).toHaveValue(dateToAssert);
   }
 
-  async selectDatepickerWithRangeFromToday(startDayFromToday: number, endDayFromToday: number) {
+  async selectDatepickerWithRangeFromToday(
+    startDayFromToday: number,
+    endDayFromToday: number
+  ) {
     const calendarInputField = this.page.getByPlaceholder("Range Picker");
     await calendarInputField.click();
-    const dateToAssertStart = await this.selectDateInTheCalendar(startDayFromToday);
+    const dateToAssertStart = await this.selectDateInTheCalendar(
+      startDayFromToday
+    );
     const dateToAssertEnd = await this.selectDateInTheCalendar(endDayFromToday);
-    const dateToAssert = `${dateToAssertStart} - ${dateToAssertEnd}`
+    const dateToAssert = `${dateToAssertStart} - ${dateToAssertEnd}`;
     await expect(calendarInputField).toHaveValue(dateToAssert);
   }
 
@@ -46,7 +53,7 @@ export class DatepickerPage {
     }
 
     await this.page
-      .locator('.day-cell.ng-star-inserted')
+      .locator(".day-cell.ng-star-inserted")
       .getByText(expectedDate, { exact: true })
       .click();
 
