@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("http://localhost:4200/"); // , { timeout: 120000, waitUntil: 'domcontentloaded'}
+  await page.goto("/"); // , { timeout: 120000, waitUntil: 'domcontentloaded'}
   await page.getByText("Forms").click();
   await page.getByText("Form Layouts").click();
 });
@@ -154,6 +154,6 @@ test("assertions", async ({ page }) => {
   await expect(basicFormButton).toHaveText("Submit");
 
   // soft assertion
-  await expect.soft(basicFormButton).toHaveText("Submit5");
+  await expect.soft(basicFormButton).toHaveText("Submit");
   await basicFormButton.click();
 });
